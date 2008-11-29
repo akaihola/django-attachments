@@ -1,0 +1,37 @@
+{% load attachment_tags %}
+
+	<form action="{% new_attachment_url object %}" method="GET">
+		<input class="submit-btn" type="submit" value="Attach a file" />
+	</form>
+
+	{% get_attachments for object as attachments %}
+	{% if attachments %}
+	<tr>
+		<td colspan="2" >
+			<h3>Attached Files:</h3>
+			<table class="bordered-table" >
+				<tr>
+					<th>File</th>
+					<th>Summary</th>
+					<th>By</th>
+					<th>When</th>
+					<th>Delete</th>
+				</tr>
+				{%  for attachment in attachments %}
+					<tr  class="{% cycle odd,even %}" >
+						<td><a href="{{ attachment.file_url }}">{{ attachment.title  }}</a></td>
+						<td>{{ attachment.summary }}</td>
+						<td>{{ attachment.attached_by }}</td>
+						<td>{{ attachment.attached_timestamp }}</td>
+						<td>
+							<form style="display: inline;" action="{% url attachment_delete attachment_slug=attachment.slug %}" method="POST">
+								<input class="submit-btn" type="submit" value="Del" />
+							</form>
+						</td>
+					</tr>								
+				{% endfor %}
+			</table>
+		</td>
+	</tr>
+	{% endif %}
+
