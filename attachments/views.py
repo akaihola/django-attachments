@@ -4,8 +4,8 @@ from django.template import RequestContext
 from django.contrib.auth.decorators import login_required
 from django.contrib.contenttypes.models import ContentType
 
-from attachments.models import *
-from attachments.forms import *
+from django.apps.attachments.models import Attachment
+from django.apps.attachments.forms import AttachmentForm
 
 
 @login_required

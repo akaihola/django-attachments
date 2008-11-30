@@ -1,6 +1,6 @@
 """
 
->>> from attachments.models import *
+>>> from django.apps.attachments.models import Attachment, TestModel
 >>> from django.contrib.auth.models import User
 >>> from django.contrib.contenttypes.models import ContentType
 
