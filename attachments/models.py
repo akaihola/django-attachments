@@ -112,9 +112,9 @@ class Attachment(models.Model):
     object_id = models.PositiveIntegerField()
     content_object = generic.GenericForeignKey("content_type", "object_id") 
     attached_timestamp = models.DateTimeField("Date attached", default=datetime.now)
-    title = models.CharField(max_length=200)
+    title = models.CharField(max_length=200, blank=True, null=True)
     slug = models.SlugField(editable=False)
-    summary = models.TextField()
+    summary = models.TextField(blank=True, null=True)
     attached_by = models.ForeignKey(User, related_name="attachment_attached_by", editable=False)
     
     objects = AttachmentManager()
