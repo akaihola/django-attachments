@@ -1,4 +1,5 @@
 *.pyc
+*.mo
 *~
 README.html
 github.rst.css
