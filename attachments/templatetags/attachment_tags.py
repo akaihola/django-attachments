@@ -2,7 +2,7 @@ from django import template
 from django.contrib.contenttypes.models import ContentType
 from django.core.urlresolvers import reverse
 
-from django.apps.attachments.models import Attachment
+from attachments.models import Attachment
 
 
 def get_contenttype_kwargs(content_object):
