@@ -6,6 +6,7 @@ from django.conf import settings
 from django.template.defaultfilters import slugify
 from django.utils import encoding
 from django.utils.http import urlquote
+from django.utils.translation import ugettext_lazy as _
 
 import re
 from datetime import datetime
@@ -107,21 +108,26 @@ class AttachmentManager(models.Manager):
 
 
 class Attachment(models.Model):
-    file = models.FileField(upload_to=ATTACHMENT_DIR)
+    file = models.FileField(_("file"), upload_to=ATTACHMENT_DIR)
     content_type = models.ForeignKey(ContentType)
     object_id = models.PositiveIntegerField()
     content_object = generic.GenericForeignKey("content_type", "object_id") 
-    attached_timestamp = models.DateTimeField("Date attached", default=datetime.now)
-    title = models.CharField(max_length=200, blank=True, null=True)
-    slug = models.SlugField(editable=False)
-    summary = models.TextField(blank=True, null=True)
-    attached_by = models.ForeignKey(User, related_name="attachment_attached_by", editable=False)
-    
+    attached_timestamp = models.DateTimeField(_("date attached"),
+                                              default=datetime.now)
+    title = models.CharField(_("title"), max_length=200, blank=True, null=True)
+    slug = models.SlugField(_("slug"), editable=False)
+    summary = models.TextField(_("summary"), blank=True, null=True)
+    attached_by = models.ForeignKey(
+        User, verbose_name=_("attached by"),
+        related_name="attachment_attached_by", editable=False)
+
     objects = AttachmentManager()
 
     class Meta:
         ordering = ['-attached_timestamp']
         get_latest_by = 'attached_timestamp'
+        verbose_name = _('attachment')
+        verbose_name_plural = _('attachments')
 
     def __unicode__(self):
         return self.title
