@@ -10,6 +10,8 @@ project. The following changes have been made:
 * 'attachments' module assumed to be directly in PYTHONPATH instead of
   django.apps.attachments
 * title and summary not required by the model
+* enabled i18n of model and model field names
+* added Finnish translation
 
 From the `django-attachments Google Code page
 <http://code.google.com/p/django-attachments/>`_:
