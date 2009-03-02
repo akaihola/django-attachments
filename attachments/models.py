@@ -130,8 +130,8 @@ class Attachment(models.Model):
         verbose_name_plural = _('attachments')
 
     def __unicode__(self):
-        return self.title
-    
+        return self.title or unicode(_('[no title]'))
+
     def save(self, force_insert=False, force_update=False):
         unique_slugify(self, self.title)
         super(Attachment, self).save(force_insert, force_update)
