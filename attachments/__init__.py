@@ -1,1 +1,1 @@
-__version__ = '0.1pre_akaihola2'
+__version__ = '0.1pre_akaihola3'
